@@ -11,11 +11,16 @@ import static java.lang.System.exit;
 
 public class ChatService {
     private List activeMemberList = new ArrayList<ChatMember>();
-    public String history = "";
+    private String history = "";
     public Scanner scan = new Scanner(System.in);
     public int quantity;
+
+    public String getHistory() {
+        return history;
+    }
+
     public String currentMember = "";
-    public String sms ;
+    private String sms ;
 
     public List getActiveMemberList() {
         return activeMemberList;
@@ -59,7 +64,7 @@ public class ChatService {
                             if (activeMembers.isEmpty()) {
                                 System.out.println("No one left in chat. Chat is closed.  Below you can see the chat history.");
                                 System.out.println();
-                                System.out.println("Chat history is: " + "\n" + history);
+                                System.out.println("Chat history is: " + "\n" + getHistory());
                                 exit(0);
                             } else {
                                 System.out.println(currentMember + " left the chat. Please change current User.");
@@ -83,12 +88,10 @@ public class ChatService {
         Date date = new Date(System.currentTimeMillis());
         System.out.println(formatter.format(date));
         scan.nextLine(); // Consume newline left-over
-        String sms = scan.nextLine();
+        sms = scan.nextLine();
         history += formatter.format(date) + " Member " + currentMember + "\n" + sms + "\n";
         if (sms != " ") {
-            System.out.println();
-            System.out.println("Your message is successfully sent.");
-            System.out.println();
+            System.out.println("\nYour message is successfully sent.\n");
         }
     }
 
