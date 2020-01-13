@@ -1,7 +1,10 @@
 package com.homework;
 
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Scanner;
 
 import static java.lang.System.exit;
 
@@ -83,6 +86,3 @@ public class ChatService {
     }
 
 }
-
-
-

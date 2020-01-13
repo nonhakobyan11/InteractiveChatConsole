@@ -1,6 +1,6 @@
 package com.homework;
 
-import java.util.*;
+import java.util.Scanner;
 
 public class ChatMember {
     Scanner scan = new Scanner(System.in);
