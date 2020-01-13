@@ -82,7 +82,8 @@ public class ChatService {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date(System.currentTimeMillis());
         System.out.println(formatter.format(date));
-        String sms = scan.next();
+        scan.nextLine(); // Consume newline left-over
+        String sms = scan.nextLine();
         history += formatter.format(date) + " Member " + currentMember + "\n" + sms + "\n";
         if (sms != " ") {
             System.out.println();
