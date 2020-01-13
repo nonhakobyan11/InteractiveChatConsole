@@ -10,15 +10,18 @@ import static java.lang.System.exit;
 
 
 public class ChatService {
-    public static ArrayList<ChatMember> activeMemberList = new ArrayList<>();
-    public static String history = "";
-    public static Scanner scan = new Scanner(System.in);
-    public static String sms ;
-    public static int quantity;
-    public static String currentMember = "";
+    private List activeMemberList = new ArrayList<ChatMember>();
+    public String history = "";
+    public Scanner scan = new Scanner(System.in);
+    public int quantity;
+    public String currentMember = "";
+    public String sms ;
 
+    public List getActiveMemberList() {
+        return activeMemberList;
+    }
 
-    public static ArrayList<ChatMember> createActiveMembersArray() {
+    public void setActiveMemberList(List activeMemberList) {
         System.out.print("Select number of chat members: ");
         quantity = scan.nextInt();
         System.out.println();
@@ -27,17 +30,20 @@ public class ChatService {
         for (int i = 0; i < quantity; i++) {
             activeMemberList.add(new ChatMember(i));
         }
-        return activeMemberList;
 
+        this.activeMemberList = activeMemberList;
     }
 
-    public static void chooseOption() {
-        while (!activeMemberList.isEmpty()) {
+
+
+
+    public void chooseOption(List<ChatMember> activeMembers) {
+        while (!activeMembers.isEmpty()) {
             System.out.print("Input your nickname in this chat: ");
             currentMember = scan.next();
             System.out.println();
             int count = 0;
-            for (ChatMember i : activeMemberList) {
+            for (ChatMember i : activeMembers) {
                 if (currentMember.equals(i.getNickname())) {
                     System.out.println("Current User is " + i.getNickname());
                     count++;
@@ -49,8 +55,8 @@ public class ChatService {
                         } else if (option.equals("2")) {
                             break;
                         } else if (option.equals("3")) {
-                            activeMemberList.remove(i);
-                            if (activeMemberList.isEmpty()) {
+                            activeMembers.remove(i);
+                            if (activeMembers.isEmpty()) {
                                 System.out.println("No one left in chat. Chat is closed.  Below you can see the chat history.");
                                 System.out.println();
                                 System.out.println("Chat history is: " + "\n" + history);
@@ -72,7 +78,7 @@ public class ChatService {
     }
 
 
-    public static void sendMessage() {
+    public void sendMessage() {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date(System.currentTimeMillis());
         System.out.println(formatter.format(date));
@@ -86,3 +92,7 @@ public class ChatService {
     }
 
 }
+
+
+
+
